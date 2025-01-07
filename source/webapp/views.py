@@ -19,3 +19,11 @@ def create_article(request):
             author=request.POST.get("author")
         )
         return HttpResponseRedirect("/")
+
+
+def article_detail(request):
+    try:
+        article = Article.objects.get(id=request.GET.get("id"))
+    except Article.DoesNotExist:
+        return HttpResponseRedirect("/")
+    return render(request, "article_detail.html", context={"article": article})
