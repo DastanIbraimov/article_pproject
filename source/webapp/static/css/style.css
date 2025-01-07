@@ -1,0 +1,8 @@
+.article {
+    border: solid 3px red;
+}
+.image{
+    width: 200px;
+    height: auto;
+    border: black 1px solid;
+}
