@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 
 from webapp.models import Article
 
@@ -21,8 +21,5 @@ def create_article(request):
 
 
 def article_detail(request, pk):
-    try:
-        article = Article.objects.get(id=pk)
-    except Article.DoesNotExist:
-        return redirect("articles")
+    article = get_object_or_404(Article, pk=pk)
     return render(request, "article_detail.html", context={"article": article})
