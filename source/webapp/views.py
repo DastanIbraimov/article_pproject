@@ -1,5 +1,4 @@
-from django.shortcuts import render
-from django.http import HttpResponseRedirect
+from django.shortcuts import render, redirect
 
 from webapp.models import Article
 
@@ -13,17 +12,17 @@ def create_article(request):
     if request.method == "GET":
         return render(request, "create_article.html")
     else:
-        Article.objects.create(
+        article = Article.objects.create(
             title=request.POST.get("title"),
             content=request.POST.get("content"),
             author=request.POST.get("author")
         )
-        return HttpResponseRedirect("/")
+        return redirect("article_detail", pk=article.pk)
 
 
 def article_detail(request, pk):
     try:
         article = Article.objects.get(id=pk)
     except Article.DoesNotExist:
-        return HttpResponseRedirect("/")
+        return redirect("articles")
     return render(request, "article_detail.html", context={"article": article})
