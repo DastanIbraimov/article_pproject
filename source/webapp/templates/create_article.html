@@ -12,14 +12,6 @@
 
     {#<form action="{% url 'create_article' %}" method="post"> будет работать одинаково#}
     <form action="" method="post">
-        {% csrf_token %}
-        <label>Title:</label><br/>
-        <input type="text" name="title"/><br/>
-        <label>Text:</label><br/>
-        <textarea name="content"></textarea><br/>
-        <label>Author:</label><br/>
-        <input type="text" name="author"/><br/>
-        <br/>
-        <input type="submit" value="Create"/>
+        {% include 'partial/article_form.html' with button_text='Create' %}
     </form>
 {% endblock %}
