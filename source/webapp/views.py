@@ -39,3 +39,8 @@ def article_update_view(request, pk):
         article.save()
         return redirect("article_detail", pk=article.pk)
 
+
+def article_delete_view(request, pk):
+    article = get_object_or_404(Article, pk=pk)
+    article.delete()
+    return redirect("articles")
