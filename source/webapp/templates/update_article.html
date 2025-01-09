@@ -8,18 +8,18 @@
 {% endblock %}
 
 {% block content %}
-    <h1>Create Article</h1>
+    <h1>Update Article</h1>
 
     {#<form action="{% url 'create_article' %}" method="post"> будет работать одинаково#}
     <form action="" method="post">
         {% csrf_token %}
         <label>Title:</label><br/>
-        <input type="text" name="title"/><br/>
+        <input type="text" value="{{ article.title }}" name="title"/><br/>
         <label>Text:</label><br/>
-        <textarea name="content"></textarea><br/>
+        <textarea name="content">{{ article.content }}</textarea><br/>
         <label>Author:</label><br/>
-        <input type="text" name="author"/><br/>
+        <input type="text" value="{{ article.author }}" name="author"/><br/>
         <br/>
-        <input type="submit" value="Create"/>
+        <input type="submit" value="Update"/>
     </form>
 {% endblock %}

@@ -15,6 +15,7 @@
                         <h6 class="card-subtitle mb-2 text-body-secondary">{{ article.author }}</h6>
                         <p class="card-text">{{ article.content }}</p>
                         <a href="{% url 'article_detail' article.pk %}" class="card-link">Details</a>
+                        <a href="{% url 'update_article' article.pk %}" class="card-link">Update</a>
                     </div>
                 </div>
             </div>
