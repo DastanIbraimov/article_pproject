@@ -1,24 +1,31 @@
 {% csrf_token %}
-<label>Title:</label><br/>
-{% if errors.title %}
-    <input class="border border-danger" type="text" value="{{ article.title }}" name="title"/><br/>
-    <p class="text-danger">{{ errors.title }}</p>
-{% else %}
-    <input type="text" value="{{ article.title }}" name="title"/><br/>
-{% endif %}
-<label>Text:</label><br/>
-{% if errors.content %}
-    <textarea class="border border-danger" name="content">{{ article.content }}</textarea><br/>
-    <p class="text-danger">{{ errors.content }}</p>
-{% else %}
-    <textarea name="content">{{ article.content }}</textarea><br/>
-{% endif %}
-<label>Author:</label><br/>
-{% if errors.author %}
-    <input class="border border-danger" type="text" value="{{ article.author }}" name="author"/><br/>
-    <p class="text-danger">{{ errors.author }}</p>
-{% else %}
-    <input type="text" value="{{ article.author }}" name="author"/><br/>
-{% endif %}
-<br/>
+{#{{ form.as_p }}        вариант 1 #}
+
+
+{#<p><label for="{{ form.title.id_for_label }}">{{ form.title.label }}</label></p>       вариант 2 #}
+{#{% for error in form.title.errors %}#}
+{#    <p class="text-danger">{{ error }}</p>#}
+{#{% endfor %}#}
+{#{{ form.title }}#}
+{##}
+{#<p><label for="{{ form.author.id_for_label }}">{{ form.author.label }}</label></p>#}
+{#{% for error in form.author.errors %}#}
+{#    <p class="text-danger">{{ error }}</p>#}
+{#{% endfor %}#}
+{#{{ form.author }}#}
+{##}
+{#<p><label for="{{ form.content.id_for_label }}">{{ form.content.label }}</label></p>#}
+{#{% for error in form.content.errors %}#}
+{#    <p class="text-danger">{{ error }}</p>#}
+{#{% endfor %}#}
+{#{{ form.content }}#}
+
+{% for field in form %}
+    <p><label for="{{ field.id_for_label }}">{{ field.label }}</label></p>
+    {% for error in field.errors %}
+        <p class="text-danger">{{ error }}</p>
+    {% endfor %}
+    {{ field }}
+{% endfor %}
+<br>
 <input type="submit" value="{{ button_text }}"/>
