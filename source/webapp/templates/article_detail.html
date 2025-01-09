@@ -1,7 +1,16 @@
 {% extends 'base.html' %}
 
 {% block title %}
-	Details
+    Details
+{% endblock %}
+
+{% block links %}
+    <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="{% url 'update_article' article.pk %}">Update</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="{% url 'delete_article' article.pk %}">Delete</a>
+    </li>
 {% endblock %}
 
 {% block content %}
@@ -11,7 +20,6 @@
             <h6 class="card-subtitle mb-2 text-body-secondary">{{ article.author }}</h6>
             <p class="card-text">{{ article.content }}</p>
             <p class="card-text">{{ article.published_at|date:'y.m.d'}}</p>
-            <a href="{% url 'update_article' article.pk %}" class="card-link">Update</a>
         </div>
     </div>
 {% endblock %}
