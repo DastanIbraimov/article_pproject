@@ -42,5 +42,8 @@ def article_update_view(request, pk):
 
 def article_delete_view(request, pk):
     article = get_object_or_404(Article, pk=pk)
-    article.delete()
-    return redirect("articles")
+    if request.method == "GET":
+        return render(request, "delete_article.html", context={"article": article})
+    else:
+        article.delete()
+        return redirect("articles")
